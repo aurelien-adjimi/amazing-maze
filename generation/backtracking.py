@@ -1,4 +1,5 @@
 import random
+import time
 
 # Class representing a cell. The class has 2 attributes: 
 # 'visited' which is a boolean indicating if the cell have been visited. By default to False
@@ -33,7 +34,6 @@ class Labyrinthe:
     def generate(self):
         stack = [(0, 0)]
         self.maze[0][0] = '.'
-        self.maze[2 * self.size][2 * self.size] = '.'
 
         while stack: # Loop that continues until the stack is empty.This stack is used to track the cells visited during maze generation.
             x, y = stack[-1] # Extracts the coordinates of the cell at the top of the stack. stack[-1] returns the last item in the stack, which represents the cell currently being explored.
@@ -50,6 +50,21 @@ class Labyrinthe:
             else:
                 stack.pop() # If none of the neighbors is unvisited, it unstack the stack by removing the current cell, go back and explore another possible path
 
+# Check the end of iteration
+            if len(stack) == 1:
+                last_x, last_y = stack[0]
+                exit_candidates = []
+            
+            # Add the neighbors cells of the last cell
+                if last_x > 0:
+                    exit_candidates.append((last_x - 1, last_y))
+                if last_x < 2 * self.size:
+                    exit_candidates.append((last_x + 1, last_y))
+                if last_y > 0:
+                    exit_candidates.append((last_x, last_y - 1))
+                if last_y < 2 * self.size:
+                    exit_candidates.append((last_x, last_y + 1))
+
 # Write the maze and read the grid, convert each string and write the lines
     def save_to_file(self, filename):
         with open(filename, 'w') as f:
@@ -64,11 +79,17 @@ def main():
 
     if n % 2 == 0:
         n += 1
-
+    start = time.time()
     labyrinthe = Labyrinthe(n) # Create an instance of the class with n specified
     labyrinthe.generate() # Calls 'generate' method
     labyrinthe.save_to_file(filename) # Save the maze in the file
-    print(f"Le labyrinthe a été généré et enregistré dans le fichier {filename}") 
+    end = time.time()
+    elapsed = end - start
+    print(f"Le labyrinthe a été généré et enregistré dans le fichier {filename} en {elapsed} secondes") 
+
+
+    with open('log.txt', 'a') as log_file:
+        log_file.write(f"The generation of the maze size {n}*{n} took {elapsed} seconds with Recursive Backtacking\n")
 
 if __name__ == "__main__":
     main()

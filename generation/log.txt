@@ -1,0 +1,8 @@
+The generation of the maze size 5*5 took 0.0010035037994384766 seconds with Recursive Backtacking
+The generation of the maze size 11*11 took 0.003009796142578125 seconds with Recursive Backtacking
+The generation of the maze size 51*51 took 0.03303265571594238 seconds with Recursive Backtacking
+The generation of the maze size 101*101 took 0.10655903816223145 seconds with Recursive Backtacking
+The generation of the maze size 501*501 took 2.6437106132507324 seconds with Recursive Backtacking
+The generation of the maze size 1001*1001 took 10.833051443099976 seconds with Recursive Backtacking
+The generation of the maze size 5001*5001 took 268.19105768203735 seconds with Recursive Backtacking
+The generation of the maze size 7*7 took 0.003022909164428711 seconds with Recursive Backtacking
