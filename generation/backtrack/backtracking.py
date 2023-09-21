@@ -50,7 +50,7 @@ class Labyrinthe:
             else:
                 stack.pop() # If none of the neighbors is unvisited, it unstack the stack by removing the current cell, go back and explore another possible path
 
-# Check the end of iteration
+# Check the last iteration
             if len(stack) == 1:
                 last_x, last_y = stack[0]
                 exit_candidates = []
